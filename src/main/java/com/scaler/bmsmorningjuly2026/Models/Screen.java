@@ -10,13 +10,15 @@ import java.util.List;
 @Entity
 public class Screen extends BaseModel {
     private String name;
-    @OneToMany // Screen 1:M seats
+    @OneToMany(mappedBy = "screen") // Screen 1:M seats
     private List<Seat> seats;
     @OneToMany
     private List<Show> shows;
     @Enumerated(EnumType.STRING)
     @ElementCollection
     private List<Feature> features;
+    @ManyToOne // Screen M:1 Theatre
+    private Theatre theatre;
 }
 
 // Show - movieId, startTime, endTime, ScreenId, list<features>
