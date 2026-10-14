@@ -27,6 +27,9 @@ public class Booking extends BaseModel {
 
     @OneToMany(mappedBy = "booking")
     private List<Payment> payments;
+
+    private BookingStatus status;
+    private Double amount;
 }
 // Booking Table - List<Payment> - [p1, p2, p3]
 // booking_payments

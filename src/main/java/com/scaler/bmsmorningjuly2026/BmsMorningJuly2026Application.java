@@ -3,15 +3,20 @@ package com.scaler.bmsmorningjuly2026;
 import com.scaler.bmsmorningjuly2026.Models.Region;
 import com.scaler.bmsmorningjuly2026.Models.Screen;
 import com.scaler.bmsmorningjuly2026.Models.Theatre;
+import com.scaler.bmsmorningjuly2026.Models.User;
 import com.scaler.bmsmorningjuly2026.Repositories.RegionRepository;
 import com.scaler.bmsmorningjuly2026.Repositories.ScreenRepository;
 import com.scaler.bmsmorningjuly2026.Repositories.TheatreRepository;
+import com.scaler.bmsmorningjuly2026.Repositories.UserRepository;
+import com.scaler.bmsmorningjuly2026.Services.UserService;
 import jdk.dynalink.linker.LinkerServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 
 @SpringBootApplication
@@ -23,6 +28,10 @@ public class BmsMorningJuly2026Application implements CommandLineRunner {
     TheatreRepository theatreRepository;
     @Autowired
     ScreenRepository screenRepository;
+    @Autowired
+    UserService userService;
+    @Autowired
+    private UserRepository userRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(BmsMorningJuly2026Application.class, args);
@@ -89,12 +98,21 @@ public class BmsMorningJuly2026Application implements CommandLineRunner {
 //        Theatre theatre = theatreRepository.findByName("Phoenix");
 //        System.out.println(theatre.getName());
 //      Screens -> Theatre -> Name = "Phoenix"
-        List<Screen> screenList = screenRepository.findByTheatre_Name("Phoenix");
-        for (Screen screen : screenList) {
-            System.out.println(screen.getName());
-        }
-        
+//        List<Screen> screenList = screenRepository.findByTheatre_Name("Phoenix");
+//        for (Screen screen : screenList) {
+//            System.out.println(screen.getName());
+//        }
+
         // Movies -> Screen > Theatre -> City -> Name is Mumbai
+
+//        User user1 = userService.signup("Akash", "akash1@gmail.com", "passpass");
+//        User user2 = userService.signup("Akash", "akash2@gmail.com", "passpass");
+//        User user3 = userService.signup("Sam", "sam@gmail.com", "passpass123");
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        System.out.println(encoder.matches("passpass", "$2a$10$UdgI7d9nSqtPdFAz0spAeO/bMUPQe3ztaJvmGCX0dGyPS7HH4H8ku"));
+
     }
     // AND (Helps you to add filters of properties on the model), UNDERSCORE(_) - Helps you to add filters of nested properties
 }
+
